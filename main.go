@@ -2,6 +2,7 @@ package main;
 
 import (
     "fmt"
+    "gowatch/modules/device"
     "github.com/google/gopacket/pcap"
     // "github.com/google/gopacket"
 )
@@ -24,11 +25,6 @@ func main() {
     */
 
     // ! Handle first device
-    handleDevice(devices[0])
+    device.HandleDevice(devices[0])
 }
 
-func handleDevice(device pcap.Interface) error {
-    // data, metadata, err := gopacket.NewPacketSource()
-    fmt.Println("Handling device " + device.Name)
-    return nil
-}
