@@ -25,6 +25,10 @@ func main() {
     */
 
     // ! Handle first device
-    device.HandleDevice(devices[0])
+    err = device.HandleDevice(devices[0])
+    if err != nil {
+        fmt.Println("Failed to handle device correctly: ", err)
+        return
+    }
 }
 
