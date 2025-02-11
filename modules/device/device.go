@@ -1,14 +1,14 @@
 package device
 
 import (
-    "fmt"
+    "log"
     "gowatch/modules/packet"
     "github.com/google/gopacket/pcap"
     "github.com/google/gopacket"
 )
 
 func HandleDevice(device pcap.Interface) error {
-    fmt.Println("Handling device " + device.Name)
+    log.Println("Handling device " + device.Name)
 
     handle, err := pcap.OpenLive(device.Name, 1600, true, pcap.BlockForever)
 

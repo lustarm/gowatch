@@ -15,6 +15,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 func StartAPI() {
     r := mux.NewRouter()
     r.HandleFunc("/", homeHandler)
+
     srv := &http.Server {
         Handler: r,
         Addr: "0.0.0.0:8000",
