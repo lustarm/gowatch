@@ -2,19 +2,20 @@ package api
 
 import (
     "log"
-    "fmt"
     "net/http"
     "time"
+
     "github.com/gorilla/mux"
 )
 
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "hello world")
-}
+const VERSION = "v0"
 
-func StartAPI() {
+func Start() {
     r := mux.NewRouter()
-    r.HandleFunc("/", homeHandler)
+    r.HandleFunc("/" + VERSION, homeHandler)
+
+    // ! config loader
+    r.HandleFunc("/" + VERSION + "/config", configHandler)
 
     srv := &http.Server {
         Handler: r,

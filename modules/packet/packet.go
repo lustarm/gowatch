@@ -27,12 +27,17 @@ type PacketInfo struct {
 // map
 // 1 if in map 0 if not
 var bad map[string]int = make(map[string]int)
+var BadCount int
 
 func MarkBad(ip string) {
     bad[ip] = 1
 }
 
 func isBad(ip string) bool {
+    if bad[ip] != 1{
+        return false
+    }
+    BadCount++
     return bad[ip] == 1
 }
 
