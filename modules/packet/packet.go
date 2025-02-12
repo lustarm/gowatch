@@ -92,7 +92,6 @@ func handleUDP(info *PacketInfo, udp *layers.UDP, _ gopacket.Packet) error {
 		info.DestIP, info.DestPort,
 		info.Length)
 
-    /*
 	// Detect common UDP protocols based on port
 	switch {
 	case info.DestPort == 53 || info.SourcePort == 53:
@@ -105,7 +104,6 @@ func handleUDP(info *PacketInfo, udp *layers.UDP, _ gopacket.Packet) error {
 	case info.DestPort == 5353 || info.SourcePort == 5353:
 		log.Println("mDNS traffic detected")
 	}
-    */
 
 	return nil
 }

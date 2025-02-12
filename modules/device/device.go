@@ -9,6 +9,7 @@ import (
 
 func HandleDevice(device pcap.Interface) error {
     log.Println("Handling device " + device.Name)
+    log.Println("Watching for malicious packets")
 
     handle, err := pcap.OpenLive(device.Name, 1600, true, pcap.BlockForever)
 
