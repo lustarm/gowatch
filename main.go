@@ -1,15 +1,24 @@
-package main;
+package main
 
 import (
-    "log"
-    "gowatch/modules/device"
-    "gowatch/modules/api"
-    "github.com/google/gopacket/pcap"
+	"gowatch/modules/api"
+	"gowatch/modules/device"
+	"gowatch/modules/load"
+	"log"
+
+	"github.com/google/gopacket/pcap"
 )
 
 func main() {
     // ! start api
     go api.StartAPI()
+
+    // ! load from bad-ips
+    err := load.Load()
+    if err != nil {
+        log.Fatalln("Failed to load IPs: ", err)
+        return
+    }
 
     devices, err := pcap.FindAllDevs();
     if err != nil {
