@@ -17,6 +17,8 @@ func Start() {
     // ! config loader
     r.HandleFunc("/" + VERSION + "/config", configHandler)
 
+    r.HandleFunc("/" + VERSION + "/stats", statsHandler)
+
     srv := &http.Server {
         Handler: r,
         Addr: "0.0.0.0:8000",

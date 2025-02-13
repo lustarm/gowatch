@@ -2,13 +2,14 @@ package api
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
-    "strconv"
-    "log"
-    "os"
+	"os"
+	"strconv"
 
-    "gowatch/modules/config"
-    "gowatch/modules/packet"
+	"gowatch/modules/config"
+	"gowatch/modules/packet"
+	"gowatch/modules/stats"
 )
 
 const INVALID_REQUEST = "Invalid request"
@@ -54,6 +55,17 @@ func configHandler(w http.ResponseWriter, r *http.Request) {
     response := APIResponse {
         "error" : false,
         "message" : "Loaded config correctly",
+    }
+
+    json.NewEncoder(w).Encode(response)
+}
+
+func statsHandler(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-Type", "application/json")
+
+    response := APIResponse {
+        "error" : false,
+        "message" : stats.GlobalStats,
     }
 
     json.NewEncoder(w).Encode(response)

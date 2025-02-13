@@ -1,10 +1,12 @@
 package device
 
 import (
-    "log"
-    "gowatch/modules/packet"
-    "github.com/google/gopacket/pcap"
-    "github.com/google/gopacket"
+	"gowatch/modules/packet"
+	"gowatch/modules/stats"
+	"log"
+
+	"github.com/google/gopacket"
+	"github.com/google/gopacket/pcap"
 )
 
 func HandleDevice(device pcap.Interface) error {
@@ -23,6 +25,8 @@ func HandleDevice(device pcap.Interface) error {
     ps := gopacket.NewPacketSource(handle, handle.LinkType())
 
     for p := range ps.Packets() {
+        stats.GlobalStats.TotalPackets++
+
         err = packet.HandlePacket(p)
 
         if err != nil {
